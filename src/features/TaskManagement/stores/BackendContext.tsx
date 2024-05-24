@@ -13,7 +13,7 @@ export interface BackendContextType {
   fetchTeams: () => Promise<void>;
   fetchUsers: () => Promise<void>;
   createProject: (project: Partial<Project>) => Promise<void>;
-  createTask: (task: Partial<Task>) => Promise<void>;
+  createTask: (task: Partial<Task>) => Promise<Task>;
   createTeam: (team: Partial<Team>) => Promise<void>;
   createUser: (user: Partial<User>) => Promise<void>;
   // Add other CRUD operations as needed
@@ -52,9 +52,10 @@ export const BackendProvider: React.FC<{ children: ReactNode }> = ({ children })
     setProjects([...projects, response.data]);
   };
 
-  const createTask = async (task: Partial<Task>) => {
-    const response = await axios.post('/tasks', task);
+  const createTask  = async (task: Partial<Task>) => {
+    const response = await axios.post<Task>('/tasks', task);
     setTasks([...tasks, response.data]);
+    return response.data;
   };
 
   const createTeam = async (team: Partial<Team>) => {

@@ -14,6 +14,7 @@ export interface Task {
   description: string;
   status: 'pending' | 'in-progress' | 'completed';
   dueDate?: Date;
+  startDate?: Date;
   createdBy: string;
   assignedTo?: User[];
   createdAt: Date;
@@ -36,4 +37,5 @@ export interface User {
   displayName: string;
   createdAt: Date;
   updatedAt: Date;
+  avatar?: string;
 }

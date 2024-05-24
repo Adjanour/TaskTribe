@@ -1,9 +1,18 @@
 // src/pages/dashboard.tsx
 import  useAuth  from '@/hooks/useAuth';
 import ProjectsComponent from '../components/Projects/Projects';
+import { TaskForm } from '../components/Forms';
+import { useBackend } from '../hooks/useBackend';
+import { useEffect } from 'react';
 
 const Dashboard = () => {
   const { currentUser } = useAuth();
+  const {fetchUsers,fetchTeams} = useBackend();
+
+  useEffect(() => {
+    fetchUsers();
+    fetchTeams();
+  }, []);
 
   return (
     <div>
@@ -14,6 +23,7 @@ const Dashboard = () => {
         <p>You are not logged in.</p>
       )}
       <ProjectsComponent />
+      <TaskForm />
     </div>
   );
 };
