@@ -11,14 +11,21 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.3.6",
+    "axios": "^1.7.2",
     "clsx": "^2.1.1",
+    "firebase": "^10.12.1",
     "framer-motion": "^11.2.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.13",
+    "react-icons": "^5.2.1",
+    "react-intl": "^6.6.8",
+    "react-query": "^3.39.3",
     "react-router": "^6.23.1",
     "react-router-dom": "^6.23.1"
   },
   "devDependencies": {
+    "@types/node": "^20.12.12",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
