@@ -24,7 +24,7 @@ export const TaskForm = () => {
   console.log(user);
   const { projects, users, createTask } = useBackend();
   const [submiting, setSubmiting] = React.useState(false);
-  const [assignedTo, setAssignedTo] = React.useState<Usertype[]>([]);
+//   const [assignedTo, setAssignedTo] = React.useState<Usertype[]>([]);
 
   console.log(users);
   console.log(projects);

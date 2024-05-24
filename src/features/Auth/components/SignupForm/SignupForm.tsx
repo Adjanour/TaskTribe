@@ -23,21 +23,25 @@ export const SignupForm = () => {
     <>
     <form onSubmit={handleSubmit} className="w-full space-y-4 px-2">
       <div className="form-control">
+        <label htmlFor="email">Email</label>
         <Input
           className="w-full"
           id="email"
           name="email"
           type="email"
-          label="Email"
           placeholder="Enter your email"
+          size="lg"
+          radius="sm"
+          tabIndex={0}
         />
       </div>
       <div className="form-control">
+        <label htmlFor="password">Password</label>
         <Input
-          label="Password"
-          size="md"
+          size="lg"
           name="password"
           id="password"
+          tabIndex={1}
           placeholder="Enter your password"
           endContent={
             <button
@@ -58,7 +62,10 @@ export const SignupForm = () => {
       </div>
 
       <div className="flex w-full justify-center mx-auto items-center space-x-4">
-        <Button type="submit" spinner color="primary">Sign Up</Button>
+        <Button tabIndex={3} type="submit" spinner color="primary" className="bg-blue-700 w-full">Sign Up</Button>
+      </div>
+      <div className="flex w-full justify-center mx-auto items-center space-x-4">
+        <span className="text-sm">Already have an account? <a href="/auth/login" className="text-blue-700">Login</a></span>
       </div>
     </form>
    

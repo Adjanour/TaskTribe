@@ -22,23 +22,28 @@ export const LoginForm = () => {
   }
   return (
     <>
-    <form onSubmit={handleSubmit} className="w-full space-y-4 px-2">
-      <div className="form-control">
+    <form onSubmit={handleSubmit} className="w-full space-y-4 px-2 py-2">
+      <div>
+        <label htmlFor="email" className="text-default-900">Email</label>
         <Input
-          className="w-full"
+          className="w-full mb-2"
           id="email"
           name="email"
           type="email"
-          label="Email"
+          size="lg"
+          labelPlacement="outside"
           placeholder="Enter your email"
+          
+          radius="sm"
         />
       </div>
-      <div className="form-control">
+      <div >
+        <label htmlFor="password" className="text-default-900">Password</label>
         <Input
-          label="Password"
-          size="md"
+          size="lg"
           name="password"
           id="password"
+          radius="sm"
           placeholder="Enter your password"
           endContent={
             <button
@@ -59,21 +64,22 @@ export const LoginForm = () => {
       </div>
 
       <div className="flex w-full justify-center mx-auto items-center space-x-4">
-        <Button type="submit" color="primary" className="w-full">Login</Button>
+        <Button type="submit" color="primary" className="w-full bg-blue-700">Login</Button>
       </div>
-    </form>
-  
-     <div className="flex w-fit justify-start ml-2 mx-auto mt-4 items-center space-x-4">
-        <Button color="primary" onClick={loginWithGoogle} className="flex items-center space-x-2">
-            <FcGoogle className="h-5 w-5" />
+      <div className="flex w-full justify-start mx-auto mt-4 items-center space-x-4">
+        <Button color="primary" onClick={loginWithGoogle} className="flex bg-blue-700 items-center space-x-2">
+            <span className="rounded-full bg-white p-1"><FcGoogle className="h-5 w-5" /></span>
             <span>Sign in with Google</span>
           </Button>
           <span className="flex items-center">
-          <a href="#" className="text-primary-500 text-sm">
+          <a href="#" className="text-sm text-foreground">
             Forgot Password?
           </a>
         </span>
       </div>
+    </form>
+  
+     
     </>
   );
 };
