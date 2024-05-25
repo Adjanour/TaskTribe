@@ -23,7 +23,7 @@ export const useRequireAuth = () => {
     if (!currentUser) {
       router('/auth/login');
     }
-  }, [currentUser, router]);
+  }, []);
 
   return currentUser;
 };

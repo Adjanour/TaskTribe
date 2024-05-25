@@ -16,7 +16,7 @@ export interface Task {
   dueDate?: Date;
   startDate?: Date;
   createdBy: string;
-  assignedTo?: User[];
+  assignedTo?: string[];
   createdAt: Date;
   updatedAt: Date;
 }
