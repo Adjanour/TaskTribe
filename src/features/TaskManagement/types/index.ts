@@ -13,10 +13,25 @@ export interface Task {
   title: string;
   description: string;
   status: 'pending' | 'in-progress' | 'completed';
-  dueDate?: Date;
-  startDate?: Date;
+  dueDate: Date;
+  startDate: Date;
   createdBy: string;
   assignedTo?: string[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface TaskGet{
+  _id: string;
+  projectId: string;
+  title: string;
+  description: string;
+  status: 'pending' | 'in-progress' | 'completed';
+  dueDate: Date;
+  startDate: Date;
+  createdBy: User;
+  assignedTo: User[];
+  assignedUserIds?: string[];
   createdAt: Date;
   updatedAt: Date;
 }

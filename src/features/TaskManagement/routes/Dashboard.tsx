@@ -4,14 +4,18 @@ import ProjectsComponent from '../components/Projects/Projects';
 import { TaskForm } from '../components/Forms';
 import { useBackend } from '../hooks/useBackend';
 import { useEffect } from 'react';
+import { TaskComponent } from '../components/Tasks/Tasks';
+import { TaskTable } from '../components/TaskTable/TaskTable';
 
 const Dashboard = () => {
   const { currentUser } = useAuth();
-  const {fetchUsers,fetchTeams} = useBackend();
+  const {fetchUsers,fetchTeams,tasks,fetchTasks} = useBackend();
+
 
   useEffect(() => {
     fetchUsers();
     fetchTeams();
+    fetchTasks();
   }, []);
 
   return (
@@ -23,7 +27,9 @@ const Dashboard = () => {
         <p>You are not logged in.</p>
       )}
       <ProjectsComponent />
+      <TaskComponent />
       <TaskForm />
+      <TaskTable tasks={tasks} />
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import React, { createContext, useState, ReactNode } from 'react';
 import axiosInstance from '@/lib/axios-istance';
-import { Project, Task, Team, User } from '../types'; // Adjust the import path based on your project structure
+import { Project, Task, TaskGet, Team, User } from '../types'; // Adjust the import path based on your project structure
 
 const axios = axiosInstance;
 export interface BackendContextType {
   projects: Project[];
-  tasks: Task[];
+  tasks: TaskGet[];
   teams: Team[];
   users: User[];
   fetchProjects: () => Promise<void>;
@@ -23,7 +23,7 @@ export const BackendContext = createContext<BackendContextType | undefined>(unde
 
 export const BackendProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [projects, setProjects] = useState<Project[]>([]);
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<TaskGet[]>([]);
   const [teams, setTeams] = useState<Team[]>([]);
   const [users, setUsers] = useState<User[]>([]);
 
@@ -53,7 +53,7 @@ export const BackendProvider: React.FC<{ children: ReactNode }> = ({ children })
   };
 
   const createTask  = async (task: Partial<Task>) => {
-    const response = await axios.post<Task>('/tasks', task);
+    const response = await axios.post('/tasks', task);
     setTasks([...tasks, response.data]);
     return response.data;
   };
