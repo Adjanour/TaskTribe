@@ -1,17 +1,17 @@
-import React, { createContext, useEffect, useState } from "react";
-import { auth, googleProvider } from "@/features/Auth/firebase";
-import { useNavigate, useLocation } from "react-router";
+import React, {createContext, useEffect, useState} from "react";
+import {auth, googleProvider} from "@/features/Auth/firebase";
+import {useLocation, useNavigate} from "react-router";
 import axiosInstance from "@/lib/axios-istance";
 import {
-  User,
-  onAuthStateChanged,
-  signOut,
-  signInWithPopup,
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  User,
 } from "firebase/auth";
 import storage from "@/utils/storage";
-import { User as UserInterface } from "@/features/TaskManagement/types";
+import {User as UserInterface} from "@/features/TaskManagement/types";
 
 const axios = axiosInstance;
 
@@ -33,14 +33,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const location = useLocation();
   const from = location.pathname;
 
+  const handleUserLogin = async (user: User) => {
+    await storeUserToDatabase(user);
+    await retrieveUserFromDatabase(user.uid);
+    await retrieveAndStoreToken(user);
+  };
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    return onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
       if (user) {
-        handleUserLogin(user);
+        await handleUserLogin(user);
       }
     });
-    return unsubscribe;
   }, []);
 
   useEffect(() => {
@@ -50,11 +55,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [from, currentUser, router]);
 
-  const handleUserLogin = async (user: User) => {
-    await storeUserToDatabase(user);
-    await retrieveUserFromDatabase(user.uid);
-    await retrieveAndStoreToken(user);
-  };
+
 
   const storeUserToDatabase = async (user: User) => {
     if (user) {
